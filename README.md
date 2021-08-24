@@ -6,6 +6,12 @@
 ```bash
 git clone https://github.com/pytorch/fairseq.git
 ```
+Install fairseq
+```bash
+cd fairseq
+pip install --editable ./
+```
+
 
 Install additional requirements for Speech Translation (ST)
 ```bash
@@ -17,6 +23,8 @@ pip install sacremoses
 
 Try Speech Translation
 ```bash
+python3 or python
+import torch
 en2de = torch.hub.load('pytorch/fairseq', 'transformer.wmt19.en-de.single_model')
 en2de.translate('Hello world', beam=5)
 # 'Hallo Welt'
@@ -75,13 +83,12 @@ Download weights/model file:
 wget "https://dl.fbaipublicfiles.com/fairseq/s2t/librispeech_transformer_s.pt"
 ```
 
-Run Inference for Audio file
+Run Inference for Audio file; if throws error can't load sound file then install dependencies below
 ```bash
 CHECKPOINT_FILENAME=librispeech_transformer_s.pt
 fairseq-interactive out_dir --config-yaml config.yaml --task speech_to_text \
   --path save_dir/${CHECKPOINT_FILENAME} --max-tokens 50000 --beam 5
 ```
-
 
 
 For soundfile read error 
